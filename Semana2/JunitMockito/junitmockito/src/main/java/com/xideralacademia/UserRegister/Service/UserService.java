@@ -17,4 +17,6 @@ public interface UserService {
      * @return El usuario guardado (puede incluir el ID generado, etc.).
      */
     UserEntity registrarUsr(UserEntity user);
+    UserEntity updateUsr(UserEntity user);
+    
 }

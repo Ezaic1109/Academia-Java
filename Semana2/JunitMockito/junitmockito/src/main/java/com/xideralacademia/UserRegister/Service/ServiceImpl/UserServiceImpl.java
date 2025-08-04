@@ -35,6 +35,14 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserEntity registrarUsr(UserEntity usr) {
+        if (!usr.getCorreo().matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            throw new IllegalArgumentException("Correo no válido");
+        }
+        return user.save(usr);
+    }
+
+    @Override
+    public UserEntity updateUsr(UserEntity usr) {
         return user.save(usr);
     }
 }

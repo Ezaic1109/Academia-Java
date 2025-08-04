@@ -3,6 +3,8 @@ package com.xideralacademia.Service;
 // Importaciones necesarias para pruebas unitarias con JUnit y Mockito
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -75,4 +77,61 @@ public class UserServiceImplTest {
         // ✅ Verificar que se haya llamado al método save() del repositorio exactamente una vez
         verify(userRepository, times(1)).save(any(UserEntity.class));
     }
+
+    @Test
+    void testRegistrarEmail() {
+        // Mensaje en consola para saber que el test se está ejecutando
+        System.out.println("Ejecutando test de registrar usuario...");
+
+        // 🧍 Crear un objeto UserEntity de prueba (simula un usuario nuevo que se desea registrar)
+        UserEntity user = new UserEntity(
+            null, // ID null porque aún no se guarda en la base
+            "Juan", // Nombre
+            "Perez", // Apellido paterno
+            "Gomez", // Apellido materno
+            30, // Edad
+            "juan@example.com", // Correo
+            "1993-05-20" // Fecha de nacimiento
+        );
+
+        // 🧪 Simular comportamiento del método save del repositorio
+        // Cuando se llame a save con cualquier UserEntity, que devuelva el mismo objeto `user`
+        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
+
+        // 🚀 Llamar al método que se quiere probar
+        UserEntity resultado = userService.registrarUsr(user);
+
+        // ✅ Verificar que el resultado no sea null
+        assertNotNull(resultado);
+
+        // ✅ Verificar que el nombre devuelto sea "Juan"
+        assertEquals("juan@example.com", resultado.getCorreo());
+
+        // ✅ Verificar que se haya llamado al método save() del repositorio exactamente una vez
+        verify(userRepository, times(1)).save(any(UserEntity.class));
+    }
+    /**
+     * Test para registrar un usuario con un correo inválido.
+     */
+    @Test
+    void testRegistrarEmailInvalido() {
+        System.out.println("❌ Ejecutando test de registrar usuario con correo inválido...");
+
+        UserEntity user = new UserEntity(
+            null,
+            "Ana",
+            "Lopez",
+            "Martinez",
+            25,
+            "correonovalido.com",  // correo sin formato válido
+            "1998-12-01"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            userService.registrarUsr(user);
+        });
+
+        verify(userRepository, times(0)).save(any(UserEntity.class));
+    }
 }
+
