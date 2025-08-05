@@ -1,5 +1,7 @@
 package com.xideralproyecto.banco.Service.ServiceImpl;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.xideralproyecto.banco.Entity.CuentaEntity;
@@ -21,9 +23,9 @@ public class CuentaServiceImpl implements CuentaService {
     }
 
     @Override
-    public CuentaEntity buscarPorId(Long id) {
+    public Optional<CuentaEntity> buscarPorId(Long id) {
     
-        return cuentaRepository.findById(id).orElse(null);
+        return cuentaRepository.findById(id);
     }
 
 }

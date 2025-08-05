@@ -1,10 +1,12 @@
 package com.xideralproyecto.banco.Service;
 
+import java.util.Optional;
+
 import com.xideralproyecto.banco.Entity.CuentaEntity;
 
 public interface CuentaService {
     
     void registrarCuenta(CuentaEntity cuenta);
-    CuentaEntity buscarPorId(Long id);
+    Optional<CuentaEntity> buscarPorId(Long id);
 
 }

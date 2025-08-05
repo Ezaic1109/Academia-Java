@@ -1,5 +1,7 @@
 package com.xideralproyecto.banco.Service.ServiceImpl;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.xideralproyecto.banco.Entity.TransaccionEntity;
@@ -21,9 +23,9 @@ public class TransaccionServiceImpl implements TransaccionService {
     }
 
     @Override
-    public TransaccionEntity buscarTransaccionId(Long id) {
+    public Optional<TransaccionEntity> buscarTransaccionId(Long id) {
 
-        return transaccionRepository.findById(id).orElse(null);
+        return transaccionRepository.findById(id);
     }
 
 }

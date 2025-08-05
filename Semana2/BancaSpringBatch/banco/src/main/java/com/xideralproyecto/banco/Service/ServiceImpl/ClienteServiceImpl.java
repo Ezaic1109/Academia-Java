@@ -1,5 +1,7 @@
 package com.xideralproyecto.banco.Service.ServiceImpl;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.xideralproyecto.banco.Entity.ClienteEntity;
@@ -22,8 +24,8 @@ ClienteServiceImpl(ClienteRepository clienteRepository){
       }
 
     @Override
-    public ClienteEntity buscarPorId(Long id) {
-      return clienteRepository.findById(id).orElse(null);
+    public Optional<ClienteEntity> buscarPorId(Long id) {
+      return clienteRepository.findById(id);
     }
     
 }

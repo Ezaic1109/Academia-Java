@@ -1,5 +1,7 @@
 package com.xideralproyecto.banco.Service.ServiceImpl;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.xideralproyecto.banco.Entity.TransferenciaEntity;
@@ -22,8 +24,8 @@ public class TransferenciaImpl implements TransferenciaService {
     }
 
     @Override
-    public TransferenciaEntity buscaRTransferencia(Long id) {
-       return transferenciaRepository.findById(id).orElse(null);
+    public Optional<TransferenciaEntity> buscaRTransferencia(Long id) {
+       return transferenciaRepository.findById(id);
     }
     
 }
