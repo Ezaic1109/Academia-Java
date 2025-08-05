@@ -11,7 +11,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-
 @Entity
 public class CuentaEntity {
 
@@ -77,6 +76,5 @@ public class CuentaEntity {
     public void setTransacciones(List<TransaccionEntity> transacciones) {
         this.transacciones = transacciones;
     }
-    
 
 }
