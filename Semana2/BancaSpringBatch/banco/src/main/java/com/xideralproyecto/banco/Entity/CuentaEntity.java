@@ -1,17 +1,17 @@
 package com.xideralproyecto.banco.Entity;
 
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 
 @Entity
+@Table(name = "cuenta_entity")
 public class CuentaEntity {
 
     @Id
@@ -19,16 +19,14 @@ public class CuentaEntity {
     private Long id;
 
     private String numeroCuenta;
-    private String tipo; // Ahorro, Corriente, etc.
+    private String tipo;
     private Double saldo;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;
 
-    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
-    private List<TransaccionEntity> transacciones;
-
+    // Getters y setters
     public Long getId() {
         return id;
     }
@@ -68,13 +66,4 @@ public class CuentaEntity {
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-
-    public List<TransaccionEntity> getTransacciones() {
-        return transacciones;
-    }
-
-    public void setTransacciones(List<TransaccionEntity> transacciones) {
-        this.transacciones = transacciones;
-    }
-
 }

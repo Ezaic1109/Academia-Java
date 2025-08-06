@@ -1,31 +1,26 @@
 package com.xideralproyecto.banco.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
+@Document(collection = "clientes")
+public class ClienteMongo {
 
-@Entity
-@Table(name = "cliente_entity") 
-public class ClienteEntity {
-  @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Id
+    private String id;
     private String nombre;
     private String apellido;
     private String email;
     private String telefono;
     private String direccion;
 
-
-    public Long getId() {
+    // Getters y setters
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -68,8 +63,4 @@ public class ClienteEntity {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-
-    
-    
 }
