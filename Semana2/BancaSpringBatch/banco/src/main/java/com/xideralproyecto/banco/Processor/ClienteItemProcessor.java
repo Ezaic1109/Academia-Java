@@ -11,15 +11,19 @@ import com.xideralproyecto.banco.Entity.ClienteMongo;
 // Implementación del procesador que convierte un ClienteEntity (relacional) en ClienteMongo (documento)
 public class ClienteItemProcessor implements ItemProcessor<ClienteEntity, ClienteMongo> {
 
-    // Método sobrescrito del ItemProcessor
-    // Toma un ClienteEntity como entrada y devuelve un ClienteMongo como salida
-    @Override
-    public ClienteMongo process(ClienteEntity cliente) {
-        // Se crea una nueva instancia del documento que se guardará en MongoDB
-        ClienteMongo clienteMongo = new ClienteMongo();
+      @Override
+    public ClienteMongo process(ClienteEntity cliente) throws Exception {
 
-        // Se asignan los valores del objeto relacional al objeto documento
-        // El ID se convierte a String si originalmente es de tipo Long
+        // Validaciones simples
+        if (cliente.getNombre() == null || cliente.getNombre().trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del cliente no puede estar vacío.");
+        }
+        if (cliente.getEmail() == null || cliente.getEmail().trim().isEmpty()) {
+            throw new IllegalArgumentException("El email del cliente no puede estar vacío.");
+        }
+        // Agrega más validaciones según tu modelo (teléfono, dirección, etc.)
+
+        ClienteMongo clienteMongo = new ClienteMongo();
         clienteMongo.setId(String.valueOf(cliente.getId()));
         clienteMongo.setNombre(cliente.getNombre());
         clienteMongo.setApellido(cliente.getApellido());
@@ -27,7 +31,6 @@ public class ClienteItemProcessor implements ItemProcessor<ClienteEntity, Client
         clienteMongo.setTelefono(cliente.getTelefono());
         clienteMongo.setDireccion(cliente.getDireccion());
 
-        // Se devuelve el objeto transformado listo para escribirse en MongoDB
         return clienteMongo;
     }
 }

@@ -1,5 +1,6 @@
 package com.xideralproyecto.banco.Service.ServiceImpl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -26,6 +27,10 @@ public ClienteServiceImpl(ClienteRepository clienteRepository, ClienteMapper cli
         return clienteRepository.findById(id);
     }
 
+    @Override
+    public List<ClienteEntity> getAllClientes() {
+        return clienteRepository.findAll();
+    }
    
 
     @Override
