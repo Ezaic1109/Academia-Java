@@ -29,4 +29,18 @@ public class ClienteController {
         clienteService.registrarCliente(clienteDTO); // Llama al servicio para registrar al cliente usando los datos recibidos
         return new ResponseEntity<>("Cliente registrado con éxito", HttpStatus.CREATED); // Retorna una respuesta con mensaje y código 201 (CREATED)
     }
+    
+    // Registrar Cliente VIP
+    @PostMapping("/registrar/vip")
+    public ResponseEntity<?> registrarClienteVip(@Valid @RequestBody ClienteDto clienteDTO) {
+        clienteService.registrarClienteVip(clienteDTO);
+        return new ResponseEntity<>("Cliente VIP registrado con éxito", HttpStatus.CREATED);
+    }
+
+    // Registrar Cliente Empresa
+    @PostMapping("/registrar/empresa")
+    public ResponseEntity<?> registrarClienteEmpresa(@Valid @RequestBody ClienteDto clienteDTO) {
+        clienteService.registrarClienteEmpresa(clienteDTO);
+        return new ResponseEntity<>("Cliente Empresa registrado con éxito", HttpStatus.CREATED);
+    }
 }

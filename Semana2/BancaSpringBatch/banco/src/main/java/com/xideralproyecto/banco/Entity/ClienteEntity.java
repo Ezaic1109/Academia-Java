@@ -1,14 +1,19 @@
 package com.xideralproyecto.banco.Entity;
 
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
 import jakarta.persistence.Table;
+import jakarta.persistence.InheritanceType;
 
 
 @Entity
 @Table(name = "cliente_entity")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Estrategia de herencia
+@DiscriminatorColumn(name = "tipo_cliente") // Columna que diferencia NORMAL, VIP, EMPRESA
 public class ClienteEntity {
   @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

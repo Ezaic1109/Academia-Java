@@ -1,5 +1,8 @@
 package com.xideralproyecto.banco.Entity;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class ClienteVipEntity extends ClienteEntity {
     private String nombreEmpresa;
     private String rfc;

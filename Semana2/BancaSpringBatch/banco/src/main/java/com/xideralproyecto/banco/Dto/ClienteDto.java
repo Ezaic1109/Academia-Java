@@ -3,7 +3,7 @@ package com.xideralproyecto.banco.Dto;
 import jakarta.validation.constraints.*;
 
 public class ClienteDto {
-    
+
     @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
@@ -20,6 +20,42 @@ public class ClienteDto {
 
     @NotBlank(message = "La direccon es obligatorio")
     private String direccion;
+
+    // Para ClienteVip
+    @NotBlank(message = "El nombre de la empresa es obligatorio")
+    private String nombreEmpresa;
+
+    @NotBlank(message = "El RFC es obligatorio")
+    private String rfc;
+
+    // Para ClienteEmpresa
+    @NotNull(message = "El límite de crédito es obligatorio")
+    @Positive(message = "El límite de crédito debe ser mayor a cero")
+    private Double limCredito;
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    public Double getLimCredito() {
+        return limCredito;
+    }
+
+    public void setLimCredito(Double limCredito) {
+        this.limCredito = limCredito;
+    }
 
     public String getNombre() {
         return nombre;
@@ -60,6 +96,5 @@ public class ClienteDto {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
-    
+
 }
