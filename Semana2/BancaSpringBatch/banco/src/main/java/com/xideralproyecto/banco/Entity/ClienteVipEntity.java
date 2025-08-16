@@ -1,6 +1,6 @@
 package com.xideralproyecto.banco.Entity;
 
-public class ClienteVip extends ClienteEntity {
+public class ClienteVipEntity extends ClienteEntity {
     private String nombreEmpresa;
     private String rfc;
 
