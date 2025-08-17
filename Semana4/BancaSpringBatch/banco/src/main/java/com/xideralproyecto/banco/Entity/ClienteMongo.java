@@ -2,7 +2,7 @@ package com.xideralproyecto.banco.Entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import jakarta.persistence.Id;
+import org.springframework.data.annotation.Id;
 
 @Document(collection = "clientes")
 public class ClienteMongo {
@@ -14,6 +14,17 @@ public class ClienteMongo {
     private String email;
     private String telefono;
     private String direccion;
+
+
+
+    // Campo extra para saber el tipo de cliente
+    private String tipoCliente;
+
+    // Campos opcionales
+    private String nombreEmpresa; // VIP
+    private String rfc;           // VIP
+    private Double limCredito;    // Empresa
+
 
     // Getters y setters
     public String getId() {
@@ -63,4 +74,37 @@ public class ClienteMongo {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public String getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente(String tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    public Double getLimCredito() {
+        return limCredito;
+    }
+
+    public void setLimCredito(Double limCredito) {
+        this.limCredito = limCredito;
+    }
+    
 }

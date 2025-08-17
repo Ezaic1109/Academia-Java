@@ -1,8 +1,10 @@
 package com.xideralproyecto.banco.Entity;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("VIP")
 public class ClienteVipEntity extends ClienteEntity {
     private String nombreEmpresa;
     private String rfc;
